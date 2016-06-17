@@ -1,4 +1,4 @@
-# php-analyzer [WIP]
+# php-analyzer
 
 Container to analyze PHP projects
 
@@ -12,10 +12,6 @@ Container to analyze PHP projects
 
 `docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer phpmd`
 
-### [PhpUnit](https://github.com/sebastianbergmann/phpunit)
-
-`docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer phpunit`
-
 ### [Copy Paste Detector](https://github.com/sebastianbergmann/phpcpd)
 
 `docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer phpcpd`
@@ -27,10 +23,6 @@ Container to analyze PHP projects
 ### [Line of Codes](https://github.com/sebastianbergmann/phploc)
 
 `docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer phploc`
-
-### [PDepend](https://github.com/pdepend/pdepend)
-
-`docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer pdepend`
 
 ### [Dependency Analysis](https://github.com/mamuz/PhpDependencyAnalysis)
 
