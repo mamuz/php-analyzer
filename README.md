@@ -4,8 +4,6 @@ Container to analyze PHP projects
 
 ## Introduction
 
-`docker pull mamuz/php-analyzer`
-
 ### [Code Style](https://github.com/squizlabs/PHP_CodeSniffer)
 
 `docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer phpcs`
