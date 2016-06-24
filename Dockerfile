@@ -1,6 +1,11 @@
 FROM alpine:3.3
 
-RUN apk add --no-cache bash curl git graphviz php-cli php-json php-phar php-openssl php-dom php-ctype
+RUN apk add --no-cache bash curl git graphviz alpine-sdk autoconf php-dev php-cli php-json php-phar php-openssl php-dom php-ctype
+
+RUN curl -L http://xdebug.org/files/xdebug-2.3.3.tgz | tar zx
+RUN cd xdebug-2.3.3 && phpize && ./configure && make -j && make install
+
+COPY etc /etc
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
  && composer global require squizlabs/php_codesniffer && ln -s /root/.composer/vendor/bin/phpcs /usr/local/bin/phpcs \

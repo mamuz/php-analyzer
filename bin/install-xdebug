@@ -1,8 +1,0 @@
-#!/bin/sh
-
-cd /tmp
-curl -L http://xdebug.org/files/xdebug-2.3.3.tgz | tar zx
-cd xdebug-2.3.3
-phpize && ./configure && make -j && make install
-cd /
-rm -rf /tmp/xdebug-2.3.3
