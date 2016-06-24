@@ -8,7 +8,6 @@ RUN /usr/local/bin/install-xdebug
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
  && composer global require squizlabs/php_codesniffer && ln -s /root/.composer/vendor/bin/phpcs /usr/local/bin/phpcs \
- && composer global require phpunit/phpunit && ln -s /root/.composer/vendor/bin/phpunit /usr/local/bin/phpunit \
  && composer global require phpmd/phpmd && ln -s /root/.composer/vendor/bin/phpmd /usr/local/bin/phpmd \
  && composer global require sebastian/phpcpd && ln -s /root/.composer/vendor/bin/phpcpd /usr/local/bin/phpcpd \
  && composer global require sebastian/phpdcd && ln -s /root/.composer/vendor/bin/phpdcd /usr/local/bin/phpdcd \

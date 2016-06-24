@@ -8,10 +8,6 @@ Container to analyze PHP projects
 
 `docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer phpcs`
 
-### [PHPUnit](https://github.com/sebastianbergmann/phpunit)
-
-`docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer phpunit`
-
 ### [Mess Detector](https://github.com/phpmd/phpmd)
 
 `docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer phpmd`
