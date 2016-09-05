@@ -1,9 +1,13 @@
 FROM alpine:3.3
 
-RUN apk add --no-cache bash curl git graphviz alpine-sdk autoconf php-dev php-cli php-json php-phar php-openssl php-dom php-ctype
+RUN apk add --no-cache bash curl git graphviz alpine-sdk autoconf openjdk7-jre-base \
+    php-dev php-cli php-json php-phar php-openssl php-dom php-ctype
 
 RUN curl -L http://xdebug.org/files/xdebug-2.3.3.tgz | tar zx
 RUN cd xdebug-2.3.3 && phpize && ./configure && make -j && make install
+
+RUN curl -L http://apache.mirror.digionline.de/jmeter/binaries/apache-jmeter-3.0.tgz | tar -zx \
+ && ln -s /apache-jmeter-3.0/bin/jmeter /usr/local/bin/jmeter
 
 COPY etc /etc
 

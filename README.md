@@ -35,3 +35,7 @@ Container to analyze PHP projects
 ### [PhpMetrics](https://github.com/phpmetrics/PhpMetrics)
 
 `docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer phpmetrics`
+
+### [JMeter](http://jmeter.apache.org)
+
+`docker run --rm -it -v $(shell pwd):/app mamuz/php-analyzer jmeter -n -t TESTPLAN.jmx`
