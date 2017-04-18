@@ -1,26 +1,31 @@
-FROM alpine:3.3
+FROM php:7-alpine
 
-RUN apk add --no-cache bash curl git graphviz alpine-sdk autoconf openjdk7-jre-base \
-    php-dev php-cli php-json php-phar php-openssl php-dom php-ctype
+RUN apk add --no-cache bash curl git graphviz alpine-sdk autoconf openjdk8-jre-base
 
-RUN curl -L http://xdebug.org/files/xdebug-2.3.3.tgz | tar zx
-RUN cd xdebug-2.3.3 && phpize && ./configure && make -j && make install
+RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
+ && echo "date.timezone=${PHP_TIMEZONE:-UTC}" > "$PHP_INI_DIR/conf.d/date_timezone.ini"
 
-RUN curl -L http://apache.mirror.digionline.de/jmeter/binaries/apache-jmeter-3.0.tgz | tar -zx \
- && ln -s /apache-jmeter-3.0/bin/jmeter /usr/local/bin/jmeter
+ENV PATH "/usr/bin:$PATH"
+
+RUN curl -sSL http://xdebug.org/files/xdebug-2.5.3.tgz | tar zx
+RUN cd xdebug-2.5.3 && phpize && ./configure && make -j && make install
+
+RUN curl -sSL http://apache.mirror.digionline.de/jmeter/binaries/apache-jmeter-3.2.tgz | tar -zx \
+ && ln -s /apache-jmeter-3.2/bin/jmeter /usr/bin/jmeter
 
 COPY etc /etc
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
- && composer global require squizlabs/php_codesniffer && ln -s /root/.composer/vendor/bin/phpcs /usr/local/bin/phpcs \
- && composer global require phpmd/phpmd && ln -s /root/.composer/vendor/bin/phpmd /usr/local/bin/phpmd \
- && composer global require sebastian/phpcpd && ln -s /root/.composer/vendor/bin/phpcpd /usr/local/bin/phpcpd \
- && composer global require sebastian/phpdcd && ln -s /root/.composer/vendor/bin/phpdcd /usr/local/bin/phpdcd \
- && composer global require phploc/phploc && ln -s /root/.composer/vendor/bin/phploc /usr/local/bin/phploc \
- && composer global require mamuz/php-dependency-analysis && ln -s /root/.composer/vendor/bin/phpda /usr/local/bin/phpda \
- && composer global require sensiolabs/security-checker && ln -s /root/.composer/vendor/bin/security-checker /usr/local/bin/security-checker \
- && composer global require phpmetrics/phpmetrics && ln -s /root/.composer/vendor/bin/phpmetrics /usr/local/bin/phpmetrics
+RUN curl -OsSL https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
+ && curl -OsSL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar && chmod +x phpcs.phar && mv phpcs.phar /usr/bin/phpcs \
+ && curl -OsSL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar && chmod +x phpcbf.phar && mv phpcbf.phar /usr/bin/phpcbf \
+ && curl -OsSL https://static.phpmd.org/php/latest/phpmd.phar && chmod +x phpmd.phar && mv phpmd.phar /usr/bin/phpmd \
+ && curl -OsSL https://phar.phpunit.de/phpcpd.phar && chmod +x phpcpd.phar && mv phpcpd.phar /usr/bin/phpcpd \
+ && curl -OsSL https://phar.phpunit.de/phpdcd.phar && chmod +x phpdcd.phar && mv phpdcd.phar /usr/bin/phpdcd \
+ && curl -OsSL https://phar.phpunit.de/phploc.phar && chmod +x phploc.phar && mv phploc.phar /usr/bin/phploc \
+ && curl -OsSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey && mv phpda.pubkey /usr/bin/phpda.pubkey \
+ && curl -OsSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda && chmod +x phpda && mv phpda /usr/bin/phpda \
+ && curl -OsSL http://get.sensiolabs.org/security-checker.phar && chmod +x security-checker.phar && mv security-checker.phar /usr/bin/security-checker \
+ && curl -OsSL https://github.com/phpmetrics/PhpMetrics/releases/download/v2.2.0/phpmetrics.phar && chmod +x phpmetrics.phar && mv phpmetrics.phar /usr/bin/phpmetrics
 
 WORKDIR /app
 
-CMD [""]
