@@ -18,6 +18,7 @@ COPY etc /etc
 RUN curl -OsSL https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
  && curl -OsSL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar && chmod +x phpcs.phar && mv phpcs.phar /usr/bin/phpcs \
  && curl -OsSL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar && chmod +x phpcbf.phar && mv phpcbf.phar /usr/bin/phpcbf \
+ && curl -OsSL http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar && chmod +x php-cs-fixer-v2.phar && mv php-cs-fixer-v2.phar /usr/bin/php-cs-fixer \
  && curl -OsSL https://static.phpmd.org/php/latest/phpmd.phar && chmod +x phpmd.phar && mv phpmd.phar /usr/bin/phpmd \
  && curl -OsSL https://phar.phpunit.de/phpcpd.phar && chmod +x phpcpd.phar && mv phpcpd.phar /usr/bin/phpcpd \
  && curl -OsSL https://phar.phpunit.de/phpdcd.phar && chmod +x phpdcd.phar && mv phpdcd.phar /usr/bin/phpdcd \
