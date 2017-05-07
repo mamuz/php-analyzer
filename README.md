@@ -28,7 +28,7 @@ phpcs() {
 
 `docker run --rm -it -v $(pwd):/app mamuz/php-analyzer phpcbf`
 
-### [https://github.com/FriendsOfPHP/PHP-CS-Fixer](https://github.com/squizlabs/PHP_CodeSniffer)
+### [PHP CS Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
 
 `docker run --rm -it -v $(pwd):/app mamuz/php-analyzer php-cs-fixer`
 
