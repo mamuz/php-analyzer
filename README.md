@@ -4,9 +4,32 @@ Container to analyze PHP projects
 
 ## Introduction
 
-### [Code Style](https://github.com/squizlabs/PHP_CodeSniffer)
+You can use following commands directly or create a proxy command for each one like this:
+
+```sh
+phpcs() {
+    tty=
+    tty -s && tty=--tty
+    docker run \
+       $tty \
+       --interactive \
+       --rm \
+       --user $(id -u):$(id -g) \
+       --volume /etc/passwd:/etc/passwd:ro \
+       --volume /etc/group:/etc/group:ro \
+       --volume $(pwd):/app \
+       mamuz/php-analyzer phpcs "$@"
+}
+```
+
+### [Code Style + Fixer](https://github.com/squizlabs/PHP_CodeSniffer)
 
 `docker run --rm -it -v $(pwd):/app mamuz/php-analyzer phpcs`
+`docker run --rm -it -v $(pwd):/app mamuz/php-analyzer phpcbf`
+
+### [https://github.com/FriendsOfPHP/PHP-CS-Fixer](https://github.com/squizlabs/PHP_CodeSniffer)
+
+`docker run --rm -it -v $(pwd):/app mamuz/php-analyzer php-cs-fixer`
 
 ### [Mess Detector](https://github.com/phpmd/phpmd)
 
