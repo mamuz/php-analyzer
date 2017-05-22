@@ -7,13 +7,13 @@ RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
 
 ENV PATH "/usr/bin:$PATH"
 
-RUN curl -sSL http://xdebug.org/files/xdebug-2.5.3.tgz | tar zx
-RUN cd xdebug-2.5.3 && phpize && ./configure && make -j && make install
+RUN curl -sSL http://xdebug.org/files/xdebug-2.5.4.tgz | tar zx
+RUN cd xdebug-2.5.4 && phpize && ./configure && make -j && make install
 
 RUN curl -sSL http://apache.mirror.digionline.de/jmeter/binaries/apache-jmeter-3.2.tgz | tar -zx \
  && ln -s /apache-jmeter-3.2/bin/jmeter /usr/bin/jmeter
 
-COPY etc /etc
+COPY usr /usr
 
 RUN curl -OsSL https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
  && curl -OsSL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar && chmod +x phpcs.phar && mv phpcs.phar /usr/bin/phpcs \
