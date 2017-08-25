@@ -26,7 +26,7 @@ RUN curl -OsSL https://getcomposer.org/installer | php -- --install-dir=/usr/bin
  && curl -OsSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey && mv phpda.pubkey /usr/bin/phpda.pubkey \
  && curl -OsSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda && chmod +x phpda && mv phpda /usr/bin/phpda \
  && curl -OsSL http://get.sensiolabs.org/security-checker.phar && chmod +x security-checker.phar && mv security-checker.phar /usr/bin/security-checker \
- && curl -OsSL https://github.com/phpmetrics/PhpMetrics/releases/download/v2.2.0/phpmetrics.phar && chmod +x phpmetrics.phar && mv phpmetrics.phar /usr/bin/phpmetrics
+ && curl -OsSL https://github.com/phpmetrics/PhpMetrics/releases/download/v2.2.0/phpmetrics.phar && chmod +x phpmetrics.phar && mv phpmetrics.phar /usr/bin/phpmetrics \
+ && wget https://raw.githubusercontent.com/phpmetrics/ComposerExtension/master/composer-extension.phar && chmod +x composer-extension.phar && mv composer-extension.phar /usr/bin/composer-extension
 
 WORKDIR /app
-
